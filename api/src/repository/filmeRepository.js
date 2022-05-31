@@ -40,6 +40,8 @@ export async function buscarPorId(id) {
     const comando =
     `SELECT id_filme		id,
             nm_filme		nome,
+            ds_sinopse      sinopse,
+            img_filme     imagem,
             vl_avaliacao	avaliacao,
             dt_lancamento	lancamento,
             bt_disponivel	disponivel
@@ -50,16 +52,27 @@ export async function buscarPorId(id) {
     return linhas[0];       
 }   
 
+
 export async function buscarPorNome(nome) {
     const comando =
-    `SELECT id_filme		id,
-            nm_filme		nome,
-            vl_avaliacao	avaliacao,
-            dt_lancamento	lancamento,
-            bt_disponivel	disponivel
-        FROM tb_filme
-    WHERE nm_filme like ? `;
+        `SELECT id_filme		id,
+                nm_filme		nome,
+                vl_avaliacao	avaliacao,
+                dt_lancamento	lancamento,
+                bt_disponivel	disponivel
+            FROM tb_filme
+        WHERE nm_filme like ? `;
 
     const [linhas] = await con.query(comando, [ `%${nome}%` ]);
     return linhas;       
 }  
+
+
+export async function removerFilme(id) {
+    const comando = 
+        `DELETE FROM tb_filme 
+              WHERE id_filme = ? `;
+
+    const [ resposta ] = await con.query(comando, [id]);
+    return resposta.affectedRows;
+}
