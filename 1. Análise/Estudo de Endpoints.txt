@@ -1,0 +1,139 @@
+
+
+(1) => realizar login
+
+/ POST      /usuario/login 
+
+request body
+{
+    "email": "",
+    "senha": ""
+}
+
+response (200)
+{
+    "id": 0,
+    "email": "",
+    "nome": ""
+}
+
+////////////////////////////////////////////////////////
+
+(2) => cadastrar novo filme
+
+/POST   /filme/
+
+request body
+{
+    "nome": "",
+    "sinopse": "",
+    "avaliação" 0,
+    "lançamento": 0000-00-00,
+    "disponivel": true,
+    "imagem": "", 
+    "usuario": 0
+}
+
+
+response (200)
+{
+    "id": 1
+    "nome": "",
+    "sinopse": "",
+    "avaliação" 0,
+    "lançamento": 0000-00-00,
+    "disponivel": true,
+    "imagem": "", 
+    "usuario": 0
+}
+
+////////////////////////////////////////////////////////
+
+(3) => Alterar um filme
+
+/PUT    /filme/:id
+
+request body
+{
+    "nome": "",
+    "sinopse": "",
+    "avaliação" 0,
+    "lançamento": 0000-00-00,
+    "disponivel": true,
+    "imagem": "", 
+    "usuario": 0
+}
+
+response (204)
+- Sem conteúdo
+
+////////////////////////////////////////////////////////
+
+(4) => Remover filme
+
+/DELETE     /filme/:id
+
+response (204)
+
+
+////////////////////////////////////////////////////////
+
+
+(5) => consultar todos catalogoFilmesDB
+
+/GET    /filme
+
+response
+[
+    {
+        "nome": "",
+        "avaliação" 0,
+        "lançamento": 0000-00-00,
+        "disponivel": true, 
+        "usuario": 0
+    }
+]
+
+
+////////////////////////////////////////////////////////
+
+
+(6) => consultar filmes por nome
+
+
+/GET       /filme/busca?nome=xx
+
+response (200)
+[
+    {
+        "nome": "",
+        "avaliação" 0,
+        "lançamento": 0000-00-00,
+        "disponivel": true, 
+        "usuario": 0
+    }
+]
+
+
+
+////////////////////////////////////////////////////////
+
+
+(7) => consultar filme por id
+
+
+/GET    /filme/:id
+
+response (200)
+
+{
+    "nome": "",
+    "sinopse": "",
+    "avaliação" 0,
+    "lançamento": 0000-00-00,
+    "disponivel": true,
+    "imagem": "", 
+    "usuario": 0
+}
+
+
