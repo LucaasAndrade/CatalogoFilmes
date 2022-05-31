@@ -79,12 +79,11 @@ request body
     "avaliação" 0,
     "lançamento": 0000-00-00,
     "disponivel": true,
-    "imagem": "", 
     "usuario": 0
 }
 
 response (204)
-- Sem conteúdo
+-- Sem conteúdo
 
 ////////////////////////////////////////////////////////
 

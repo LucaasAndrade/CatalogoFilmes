@@ -38,7 +38,7 @@ UPDATE tb_filme
        ds_sinopse    = 'Filme bem tops',
        vl_avaliacao  = 9.5,
        dt_lancamento = '2010-05-03',
-       bt_disponivel = true
+       bt_disponivel = true,
  WHERE id_filme = 1;
 
 
