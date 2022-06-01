@@ -1,5 +1,5 @@
 
-import { alterarImagem, inserirFilme } from '../repository/filmeRepository.js'
+import { alterarImagem, inserirFilme, listarTodosFilmes, buscarPorId, buscarPorNome } from '../repository/filmeRepository.js'
 
 import multer from 'multer';
 import { Router } from 'express';
@@ -62,6 +62,66 @@ server.put('/filme/:id/capa', upload.single('capa') , async (req, resp) =>{
         })
     }
 });
+
+server.get('/filme/', async (req, resp) => {
+    try {
+        const resposta = await listarTodosFilmes();
+
+            resp.send(resposta);
+    }
+    catch(err) {
+        resp.status(400).send({
+            error: 'Algo deu errado',
+            type: err.message
+        })
+    }
+})
+
+server.get('/filme/busca', async (req, resp) => {
+    try {
+        const { nome } = req.query;
+
+        const resposta = await buscarPorNome(nome);
+
+        if (!resposta){
+            resp.status(404).send([])
+        }   
+        else{
+            resp.send(resposta);
+        }
+    }
+    catch(err) {
+        resp.status(400).send({
+            error: 'Algo deu errado',
+            type: err.message
+        })
+    }
+})
+
+
+server.get('/filme/:id', async (req, resp) => {
+    try {
+        const id = Number(req.params.id);
+
+        const resposta = await buscarPorId(id);
+
+        if (!resposta){
+            resp.status(404).send([])
+        }   
+        else{
+            resp.send(resposta);
+        }
+    }
+    catch(err) {
+        resp.status(400).send({
+            error: 'Algo deu errado',
+            type: err.message
+        })
+    }
+})
+
+
+
 
 
 export default server;
