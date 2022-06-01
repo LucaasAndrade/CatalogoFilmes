@@ -32,7 +32,7 @@ server.post('/filme',  async (req, resp) => {
             throw new Error('Usuario não registrado!')
         }
 
-
+        const novoFilme= await inserirFilme(filmeParaInserir);
         resp.send(filme)
     }
     catch(err){
