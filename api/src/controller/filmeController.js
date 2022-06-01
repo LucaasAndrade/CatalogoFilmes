@@ -1,5 +1,5 @@
 
-import { alterarImagem, inserirFilme, listarTodosFilmes, buscarPorId, buscarPorNome, removerFilme, alterarFilme } from '../repository/filmeRepository.js'
+import { inserirFilme, alterarImagem, listarTodosFilmes, buscarPorId, buscarPorNome, removerFilme, alterarFilme } from '../repository/filmeRepository.js'
 
 import multer from 'multer';
 import { Router } from 'express';
@@ -25,11 +25,11 @@ server.post('/filme',  async (req, resp) => {
         if(!filmeParaInserir.lancamento){
             throw new Error('Lançamento do filme obrigatório!')
         }
-        if(!filmeParaInserir.disponivel){
+        if(!filmeParaInserir.disponivel == undefined ){
             throw new Error('Informa se o  filme está disponível é obrigatório!')
         }
         if(!filmeParaInserir.usuario){
-            throw new Error('Usúario não registrado!')
+            throw new Error('Usuario não registrado!')
         }
 
 
@@ -133,34 +133,34 @@ server.delete('/filme/:id', async (req, resp) => {
     }
     catch(err) {
         resp.status(400).send({
-            erro: err.message
+            erro: err.message 
         })
     }
 })
 
 
-server.put('/filme/:id', async (req,resp) => {
+server.put('/filme/:id', async (req, resp) => {
     try {
         const { id } = req.params;
         const filme = req.body;
 
         if(!filme.nome){
-            throw new Error('Nome do filme obrigatório!')
+            throw new Error('Nome do filme obrigatório!');
         }
         if(!filme.sinopse){
-            throw new Error('Sinopse do filme obrigatório!')
+            throw new Error('Sinopse do filme obrigatório!');
         }
-        if(filme.avaliacao < 0 || filmeParaInserir.avaliacao == undefined){
-            throw new Error('Avaliação do filme obrigatório!')
+        if(filme.avaliacao == undefined || filme.avaliacao < 0){
+            throw new Error('Avaliação do filme obrigatório!');
         }
         if(!filme.lancamento){
-            throw new Error('Lançamento do filme obrigatório!')
+            throw new Error('Lançamento do filme obrigatório!');
         }
-        if(!filme.disponivel){
-            throw new Error('Informa se o  filme está disponível é obrigatório!')
+        if(filme.disponivel == undefined){
+            throw new Error('Informa se o  filme está disponível é obrigatório!');
         }
         if(filme.usuario){
-            throw new Error('Usúario não registrado!')
+            throw new Error('Usuario não registrado!');
         }
 
         const resposta = await alterarFilme(id, filme);

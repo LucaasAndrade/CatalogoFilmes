@@ -30,7 +30,8 @@ export async function listarTodosFilmes() {
             nm_filme		nome,
             vl_avaliacao	avaliacao,
             dt_lancamento	lancamento,
-            bt_disponivel	disponivel
+            bt_disponivel	disponivel,
+            id_usuario      usuario
         FROM tb_filme `;
     const [linhas] = await con.query(comando);
     return linhas;
@@ -44,7 +45,8 @@ export async function buscarPorId(id) {
             img_filme     imagem,
             vl_avaliacao	avaliacao,
             dt_lancamento	lancamento,
-            bt_disponivel	disponivel
+            bt_disponivel	disponivel,
+            id_usuario      usuario
         FROM tb_filme
     WHERE id_filme = ? `;
 
@@ -59,7 +61,8 @@ export async function buscarPorNome(nome) {
                 nm_filme		nome,
                 vl_avaliacao	avaliacao,
                 dt_lancamento	lancamento,
-                bt_disponivel	disponivel
+                bt_disponivel	disponivel,
+                id_usuario      usuario
             FROM tb_filme
         WHERE nm_filme like ? `;
 
@@ -86,8 +89,9 @@ export async function alterarFilme(id, filme) {
                 vl_avaliacao  = ?,
                 dt_lancamento = ?,
                 bt_disponivel = ?,
+                id_usuario    = ?
           WHERE id_filme      = ? `
         
-    const [resposta] = await con.query(comando, [filme.nome, filme.sinopse, filme.avaliacao, filme.lancamento, filme.disponivel, id]);
+    const [resposta] = await con.query(comando, [filme.nome, filme.sinopse, filme.avaliacao, filme.lancamento, filme.usuario, filme.disponivel, id]);
     return resposta.affectedRows;
 }

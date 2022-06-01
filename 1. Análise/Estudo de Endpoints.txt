@@ -27,8 +27,8 @@ request body
 {
     "nome": "",
     "sinopse": "",
-    "avaliação" 0,
-    "lançamento": 0000-00-00,
+    "avaliacao": 0,
+    "lancamento": "0000-00-00",
     "disponivel": true,
     "imagem": "", 
     "usuario": 0

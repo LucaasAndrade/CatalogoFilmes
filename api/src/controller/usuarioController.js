@@ -18,7 +18,7 @@ server.post('/usuario/login', async (req, resp) => {
 
     }
     catch (err) {
-        resp.status(401).send({
+        resp.status(400).send({
             err: "Algo deu errado",
             type: err.message
         });
