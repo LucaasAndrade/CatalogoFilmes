@@ -25,7 +25,6 @@ INSERT INTO tb_filme (id_usuario, nm_filme, ds_sinopse, vl_avaliacao, dt_lancame
      VALUES (1, 'Harry Potter e a Camara Secreta', 'Filme bem tops', 8.2, '2012-02-11', true);
 
 
-
 -- CSU02.1:: alterar a imagem
 UPDATE tb_filme 
    SET img_filme     = '/storage/filme/asdfasdf.jp'
