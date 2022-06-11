@@ -1,7 +1,16 @@
 
 import './index.scss'
+import storage  from 'local-storage'
+import { useNavigate } from 'react-router-dom';
 
 export default function Index() {
+    const navigate = useNavigate();
+
+    function sairClick() {
+        storage.remove('usuario-logado');
+        navigate('/');
+    }
+
     return (
         <nav className="comp-menu">
             <div>
@@ -27,7 +36,7 @@ export default function Index() {
             </div>
 
             <div className='menu-items'>
-                <div>
+                <div onClick={sairClick}>
                     <img src="/assets/images/icon-sair.svg" alt="consultar" />
                     <div>Sair</div>
                 </div>

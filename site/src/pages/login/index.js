@@ -1,7 +1,9 @@
-import React, { useState, useRef } from 'react';
+
+import React, { useState, useRef, useEffect } from 'react';
 import { login } from '../../api/usuarioApi.js'
 import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar';
+import storage from 'local-storage';
 
 import './index.scss';
 
@@ -15,16 +17,24 @@ export default function Index() {
 
     const ref = useRef();
 
+    useEffect(() => {
+        if(storage('usuario-logado')) {
+            navigate('/admin');
+        }
+    }, []);
+
     async function entrarClick() {
         ref.current.continuousStart();
         setCarregando(true);
+
         try {
             const resp = await login(email, senha);
 
-            setTimeout(() => {
+            storage('usuario-logado', resp);
 
+            setTimeout(() => {
                 navigate('/admin')
-            }, 3000);
+            }, 2000);
 
         }
         catch (err) {
